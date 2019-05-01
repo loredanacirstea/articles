@@ -8,4 +8,5 @@ Articles I have written.
 - [A Vision of a System Registry for The World Computer](https://medium.com/@loredana.cirstea/a-vision-of-a-system-registry-for-the-world-computer-be1dc2da7cae)
 - [dType — Decentralized Type System & Functional Programming on Ethereum](https://medium.com/@loredana.cirstea/dtype-decentralized-type-system-functional-programming-on-ethereum-4f7666377c9f)
 - [A Vision of A Global Operating System: Filesystem](https://medium.com/@loredana.cirstea/a-vision-of-a-global-operating-system-filesystem-c7019558b8c7)
+- [Ethereum Essence: Complex Consensus Operations](https://medium.com/@loredana.cirstea/ethereum-essence-complex-consensus-operations-9d63d419950b)
 
