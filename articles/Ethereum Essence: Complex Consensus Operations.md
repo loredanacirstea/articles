@@ -37,17 +37,17 @@ function Consensus(
 Ethereum currently uses Proof of Work as its consensus protocol. We will take a brief look at how it works.
 
 The first stage can be thought of as a consensus protocol in itself:
-Users can propose transactions that are in fact chain state transitions. They use their Ethereum clients to add the transaction in the transaction queue and propagate it further, to its connected peers. These peers follow the same process and the transaction finally reaches Ethereum clients that can also mine transactions. At this point, each miner acts like a "voter", deciding if they want to include the transaction or not in the next block. They have their own voting mechanism, based on the associated gas price and gas cost of the transaction. They also need to pass a hard cryptographic test in order have the right to propose blocks. The decision is the form of an array of transactions, that can make up the next block.
+Users can propose transactions that are in fact chain state transitions. They use their Ethereum clients to add the transaction in the transaction queue and propagate it further, to its connected peers. These peers follow the same process and the transaction finally reaches Ethereum clients that can also mine transactions. At this point, each miner acts like a "voter", deciding if they want to include the transaction or not in the next block. They have their own voting mechanism, based on the associated gas price and gas cost of the transaction. They also need to pass a hard cryptographic test in order to have the right to propose blocks. The decision is the form of an array of transactions, that can make up the next block.
 
 The second stage is about client consensus on what chain version should be further extended with blocks. Miners propose blocks and due to network propagation delays, multiple chain forks coexist at the same time. Each client node "votes" on what fork to choose as valid, based on the Greedy Heaviest Observed Subtree (GHOST) protocol, that Ethereum currently uses.
 
-But Ethereum has Turing Complete expressiveness and this means it can become a platform for building higher level consensus.
+But Ethereum has Turing Complete expressiveness and this means it can become a platform for building higher-level consensus.
 
 ## Boolean Consensus
 
-In the following parts we will explore only boolean value decisions (similar to binary consensus). Meaning, a voter can assign either `false` or `true` to a proposal.
+In the following parts, we will explore only boolean value decisions (similar to binary consensus). Meaning, a voter can assign either `false` or `true` to a proposal.
 
-In order to build a general (boolean-based) consensus protocol, one should consider fine grained voting on:
+In order to build a general (boolean-based) consensus protocol, one should consider fine-grained voting on:
 
 - function execution
 - data type
@@ -65,7 +65,7 @@ We can go further and say that the voting process can be ongoing (on or off-chai
 
 ### Permissions on Function execution
 
-Such permissions are not limited to consensus on who (EOAs) and what contracts can execute individual contract functions: one can additionally have permissions that control what functions can call/execute a given function.
+Such permissions are not limited to a consensus on who (EOAs) and what contracts can execute individual contract functions: one can additionally have permissions that control what functions can call/execute a given function.
 You can also define classes of functions that have similar types of permissions. For example, `update()` and `remove()` functions may have the same permissions, based on the executor of an `insert()`.
 
 If you want to build an interoperable consensus engine on top of Ethereum, you might want to differentiate between EVM and non-EVM environments. Imagine that you want to use a function inside the EVM protocol: such a function needs to be `public`. However, you may not want this function to be called from non-EVM environments - e.g. from a JavaScript dapp.
@@ -74,11 +74,11 @@ If you want to build an interoperable consensus engine on top of Ethereum, you m
 
 Imagine a consensus protocol for identity: users might decide to give CRUD permissions over one identity data type to some trusted 3rd party. One such a 3rd party is able to verify only one part of the user's identity and manage it on-chain, on behalf of the user. A second one can manage another identity data type. Think about Twitter attaching a user handle proof to a user's identity contract or a government entity attaching an identification hash.
 
-You can therefore have fine grained permissions on data types and on the data records themselves.
+You can, therefore, have fine-grained permissions on data types and on the data records themselves.
 
 ### Permissions on Address
 
-Such a permission can be thought of as a role-based access control mechanism.
+Such permission can be thought of as a role-based access control mechanism.
 An Ethereum address (EOAs or contracts) can be granted permissions by another address with higher permissions, on giving further permissions down the hierarchy.
 
 ### Permissions Mix
@@ -101,17 +101,17 @@ For example, Bob wants to make a change in a public filesystem folder. He wants 
 
 Bob will be allowed to move that file only if the end result of the aggregated permissions is true.
 
-The sequence of boolean operations needed to calculate wether Bob can move the file or not can be done by proposing and voting. Once the sequence is accepted, it can be used by anyone who would want to do the same.
+The sequence of boolean operations needed to calculate whether Bob can move the file or not can be done by proposing and voting. Once the sequence is accepted, it can be used by anyone who would want to do the same.
 
 ## Meta-consensus: Consensus Chaining
 
-We have talked about some of the puzzle pieces. The puzzle itself is a general consensus engine. A protocol that allows you to build other consensus protocols by using itself to reach consensus on the new protocol's design.
+We have talked about some of the puzzle pieces. The puzzle itself is a general consensus engine. A protocol that allows you to build other consensus protocols by using itself to reach a consensus on the new protocol's design.
 
-The flow would look like this: Alice proposes a new voting mechanism and submits it on-chain (the mechanism itself can even contain pointers to Swarm-stored script files). Alice does not have permission to add the voting mechanism to the protocol directly. The system therefore announces the submission and creates a new voting resource. People can now discuss and vote on it (on or off-chain). Developers can run tests on this new mechanism, in the form that was submitted.
+The flow would look like this: Alice proposes a new voting mechanism and submits it on-chain (the mechanism itself can even contain pointers to Swarm-stored script files). Alice does not have permission to add the voting mechanism to the protocol directly. The system, therefore, announces the submission and creates a new voting resource. People can now discuss and vote on it (on or off-chain). Developers can run tests on this new mechanism, in the form that was submitted.
 
 If the vote is successful, Alice's voting mechanism can be fully registered into the protocol and Alice can automatically be granted some new permissions - e.g. "reviewer of mechanism updates".
 
-And so on. This is consensus on future consensus.
+And so on. This is a consensus on a future consensus.
 
 ## Consensus Lifecycle
 
@@ -126,7 +126,7 @@ I have already mentioned permissions as having a limited life span, in the sense
 
 From a moral perspective, anything that needs consensus should be implemented as a continuous voting process. People should be able to withdraw their support for an idea at any moment. A system can only be democratic and moral if:
 - anyone can propose a change and start a voting process for it
-- any previously approved change can be reverted by voting (context has changed, influx of new voters, old voters disappear etc.)
+- any previously approved change can be reverted by voting (context has changed, an influx of new voters, old voters disappear, etc.)
 
 Implementing continuous voting on protocols:
 - people can submit a protocol change that contains all source code and information needed to test and audit it
