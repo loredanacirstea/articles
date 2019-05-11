@@ -33,4 +33,4 @@ A collection of articles I have written, demos I built & presented.
 - [OmegaPhi](https://www.youtube.com/watch?v=1uDQFt25oMc&list=PL323JufuD9JAmqbvM6I5FkIm1a5zzV8lW)
 - [MeteorJS Plugin System](https://www.youtube.com/watch?v=IvEGpinpi9I&list=PL323JufuD9JBMnH6_0mYcGuwW9UK--tlH)
 - [Subject.ro](https://www.youtube.com/watch?v=1NaviIVMKfc&list=PL323JufuD9JAHZTL-_40ZfhgsZEoo-UsT)
-- [TheSapiens - Medical Imaging & Ontologies Software](https://vimeo.com/user14292855, https://www.youtube.com/user/SapiensMapping/videos?view=0&sort=dd&shelf_id=0)
+- [TheSapiens - Medical Imaging & Ontologies Software](https://vimeo.com/user14292855), also [here](https://www.youtube.com/user/SapiensMapping/videos?view=0&sort=dd&shelf_id=0)
