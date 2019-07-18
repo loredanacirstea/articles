@@ -4,6 +4,7 @@ A collection of articles I have written, demos I built & presented.
 
 ## Articles
 
+- [Flexible Alias or Why ENS is Obsolete](https://medium.com/@loredana.cirstea/flexible-alias-or-why-ens-is-obsolete-a1353030f445)
 - [Make Ethereum Future Proof (one proposal at a time)](https://medium.com/@loredana.cirstea/make-ethereum-future-proof-one-proposal-at-a-time-18b8b98b08fc)
 - [Ethereum, Libra and a Unified Type System](https://medium.com/@loredana.cirstea/ethereum-libra-and-a-unified-type-system-7cafa6ea0bc0)
 - [Ethereum Essence: Complex Consensus Operations](https://medium.com/@loredana.cirstea/ethereum-essence-complex-consensus-operations-9d63d419950b)
