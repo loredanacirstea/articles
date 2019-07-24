@@ -25,6 +25,7 @@ A collection of articles I have written, demos I built & presented.
 
 ## Video Demos (playlists)
 
+- [Libra tools](https://www.youtube.com/playlist?list=PL323JufuD9JC_TwAMOwVkMLba1zxoBdJ8)
 - [dType — Decentralized Type System](https://www.youtube.com/playlist?list=PL323JufuD9JC46yClCf5fdaEX17kocem7)
 - [Pipeline - Visual IDE for Smart Contracts & Agents](https://www.youtube.com/playlist?list=PL323JufuD9JAyaYCEvrnQ5yOAc3ukuNyF)
 - [CryptoBotWars](https://www.youtube.com/channel/UCcLwc75SpR9tRhB9gUycs5Q/videos)
