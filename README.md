@@ -4,6 +4,7 @@ A collection of articles I have written, demos I built & presented.
 
 ## Articles
 
+- [A Future Thing: The Global App](https://medium.com/@loredana.cirstea/a-future-thing-the-global-app-56bce92bb2b7), also posted here: https://hackernoon.com/the-global-app-its-a-future-thing-p88n36w9
 - [The Ethereum Unicorn](https://medium.com/@loredana.cirstea/the-ethereum-unicorn-f7674b84dc69)
 - [Why ENS is not Obsolete](https://medium.com/@loredana.cirstea/why-ens-is-not-obsolete-a226d53a705c)
 - [Flexible Alias or Why ENS is Obsolete](https://medium.com/@loredana.cirstea/flexible-alias-or-why-ens-is-obsolete-a1353030f445)
