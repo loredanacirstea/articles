@@ -2,26 +2,57 @@
 
 ![Global App](./assets/globalApp.png)
 
-Imagine a space where you can freely explore a dataset along several spatial indexes (like aisles).
-One such example with two spatial indexes could be seen in Matrix:
+Imagine a space where you can freely explore a data set along several spatial indexes, such as in the following scene from "The Matrix":
 
 https://youtu.be/5oZi-wYarDs
 
+**Types. Lots of subtype polymorphism.**
+
+Neo said "Guns. Lots of guns". In reality, he would be in a logistics bottleneck: too many options and too much to carry. He could have said "Rifles. Lots of subtypes of rifles with attribute X.", but that is far less catchy.
+
+So, in this scene, our superclass type is `Gun`. However, there are many subtypes of guns and each type instance has addressability: `(aisle_side, row_height, item_number)`. A nice view of all aisle sides can be seen between 0:11-0:13 min.
+
+```
+0 --------------- # aisle side
+1 --------------- # aisle side
+-> Neo & Trinity  # aisle
+2 ---------------
+3 ---------------
+```
+
+But each aisle side has two inner rows - top and bottom, as seen after 0:16. For example, `(0, 0, 3)` is the 3rd item from the first aisle side, from the top row. `(3, 1, 5)` is the 5th item from the 3rd aisle side, bottom row.
+
+You can see an aisle side as a more specific `Gun` subtype. You can also see that each aisle side is compartmentalized - there are metal bars separating the items into different subcategories - another, even more specific `Gun` subtype.
+
+We can also view this arrangement in 2D: `(row_height, item_number)` if we consider that each aisle side is a continuation of the one behind it, like a very long, winding road:
+
+![winding road](https://www.likealocalguide.com/media/cache/71/a2/71a27025ffbde37271769b2b59f2ed7e.jpg)
+
+To visualize a dataset you need at least one spatial index. Any dimensions higher than 1, can be collapsed to 1.
+
+**Inventory**
+
 Imagine a world where you can select and collect items into your workspace. Such items will come with their own behavior and managing tools and manuals.
-One imperfect example comes also from Matrix:
+Again, this concept is similar to one presented in another scene from the same film:
 
 https://youtu.be/6AOpomu9V6Q
 
-Ideally, here, any observable object should automatically give access to a toolset and manual. Trinity shouldn’t have needed to request the manual.
+Ideally, here, any observable object should automatically give access to a toolset and manual, i.e. Trinity shouldn’t have needed to request the piloting program.
 
-Imagine the power to contribute to any object of that world with functionality extension, update in performance for old functions, and new types of sub-objects.
+**Autonomy**
+
+Imagine the power to contribute to any object in that world with functionality extensions, updates in performance for existing functions, and new types of sub-objects.
+
 You are the Constructor of the Construct.
 
 ## Definition and Use
 
-Yes: the Global App as a concept would make several upgrades to the concept of Construct from Matrix. But the Construct already qualifies as Global App (for Virtual Reality).
+Yes: the Global App, as a concept, would make several upgrades to the concept of Construct from Matrix. But the Construct already qualifies as Global App (for Virtual Reality).
 
-Today we use some software that almost qualifies: any modern Operating System, the Internet + the browser + a densely-connected site such as Wikipedia or Google, or Minecraft.
+Some of the software that we use today can be partially considered a Global App:
+- any modern Operating System
+- games such as Minecraft
+- the Internet + the browser + a densely-connected site such as Wikipedia or Google
 
 Any globally used software that **takes data as input and presents the user with functionality and tools specific for that type of data** is close to what we call a Global App in this article. **It is an IDE and an application at the same time** — similar to Minecraft.
 
@@ -31,12 +62,12 @@ Global Apps need to be **decentralized** and **distributed** to the majority of 
 
 What we get is a **global**, **deterministic** app, which always has the same properties if the same data types are used. For anyone. **What I have access to see is what you have access to see.**
 
-A Global App is **built on-demand, based on the data that you, the user, is working on**. The system sees the types and knows what functions, modules and dependencies it needs, in order to create the virtual world of possible use cases. And it retrieves these functions, modules, and dependencies from the global storage. Be them WASM modules, blockchain smart contracts or other types of runtime and data.
+A Global App is **built on-demand, based on the data that you, the user, are working on**. The system sees the types and knows what functions, modules and dependencies they need, in order to create the virtual world of possible use cases. It retrieves these functions, modules, and dependencies from the global storage, be they WebAssembly modules, blockchain smart contracts or other types of code and data.
 
-For every purpose, **a Global App is one for all**. Every human has access to the exact type of instance — not a Singleton, but the exact same runtime.
-And there can be an exponentially increasing number of Global Apps. Because they are not put together manually. They are created on-the-fly when you want to use them.
+For every purpose, **a Global App is one for all**. Given the same data context, every user has access to the exact type of instance - not a Singleton, but the exact same runtime.
+And there can be an exponentially increasing number of Global Apps, because they are created on-demand, based on the given data types.
 
-Think of it like going to a bike shop that has access to any type of bike part ever used and telling the shop assistant exactly what type of terrain you want to ride on, how long is the ride, how long you want your bike to last and your body measurements. The assistant will present you with a list of general options/categories of bikes that might fit. You choose. The assistant builds the bike on the spot based on what individual parts fit the requirements. The behavior is deterministic: if you have a twin who will ride along your side and has your exact body measurements, that twin will get an exact replica of your bike.
+Think of it as going to a bike shop that has access to any type of bike part ever made. You tell the shop assistant what type of terrain you ride on, how long you ride, how long you want your bike to last and your body measurements. The assistant will present you with a list of general options/categories of bikes that might fit. You choose. The assistant builds the bike on the spot based on what individual parts fit the requirements. The behavior is deterministic: if you have a twin who will ride along your side and has your exact body measurements, that twin will get an exact replica of your bike.
 
 A Global App is enriched when developers add more functionality for one or more of the data types used by it — **one change is spread across the network** and every user benefits. **Developers working on a single function would effectively contribute to any Global App that ends up using that function.**
 
