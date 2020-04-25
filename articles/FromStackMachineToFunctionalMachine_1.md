@@ -1,6 +1,6 @@
 # From Stack Machine to Functional Machine: Step 1
 
-###### tags: `Taylor`
+###### tags: `Taylor`, `Ethereum`, `Solidity`, `Yul`, `eWasm`, `WebAssembly`
 
 [ToC]
 
@@ -296,6 +296,6 @@ The ideas above and the steps that will be described in future articles are even
 
 ## Next: Step 2
 
-Recursive application is the "engine" of functional programming. In the next step, we will show applications of this engine.
+**Recursive application is the "engine" of functional programming.** In the next step, we will show applications of this engine.
 
 In the next article: Some functional patterns implemented in the same environment.
