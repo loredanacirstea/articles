@@ -21,7 +21,7 @@ Read the previous article [From Stack Machine to Functional Machine: Step 1 (rec
 
 ## Currying
 
-Currying is the technique of breaking down a function which takes multiple arguments into a series of functions, each taking one or more of those arguments.
+Currying is the technique of breaking down a function that takes multiple arguments into a series of functions, each taking one or more of those arguments.
 
 Therefore, we can write `const sum = (a, b) => a + b` as:
 
@@ -36,6 +36,19 @@ And now we can reuse `sumPartial` in other places in our code, for example, as a
 
 In our on-chain interpreted type system Taylor, with currying, we can define classes of types. `uint` itself is a partially applied function and now we can reuse this function as `uint(256)` and we will get a concrete type.
 
+### Elastic Arity
+
+Currying and de-currying are important tools to achieve better human-computer communication.
+
+If the human is used to a sum function of arity 2: `sum(a, b)`, by currying, the computer will interpret it as a composition of functions with arity 1: `sum(a)(b)`
+
+If there is a family of functions of arity n, a covering function of arity n+1 can be constructed such that any one of the initial functions are called by means of an additional argument that does the selection.
+Having the arity dynamic may make the function much more intuitive:
+```
+sum[arity n+1] = sum[arity n](last_argument)
+
+sum(2,3,4,5) = sum(2,3,4)(5) = ... = sum(2)(3)(4)(5)
+```
 
 ### Currying in the Ethereum Virtual Machine and WASM
 
@@ -51,13 +64,13 @@ Now, we can use the curried function's signature in other functions and we are g
 The following code allows us to recursively apply a series of functions, where the output of each function is fed to the next function, as input.
 
 We have:
-- some "native" functions in `executeNative`, such as `sum` (`0xeeeeeeee`), `recursiveApply`(`0xcccccccc`) and `curry` (`0xbbbbbbbb`). And we will call `recursiveApply` with a number of `steps`, each step being a function that has some inputs.
+- some "native" functions in `executeNative`, such as `sum` (`0xeeeeeeee`), `recursiveApply`(`0xcccccccc`) and `curry` (`0xbbbbbbbb`). And we will call `recursiveApply` with a number of `steps`, each step is a function that has some inputs.
 - `executeCurriedFunction`, which knows how to process curried functions
 - `executeInternal`, which knows how to distinguish a "native" from a curried function.
 
 #### Currying Example: sum(64, 32)
 
-The calldata will be: `0xffffffffcccccccc000000020000002800000020bbbbbbbbeeeeeeee00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000020`
+The `calldata` will be: `0xffffffffcccccccc000000020000002800000020bbbbbbbbeeeeeeee00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000020`
 
 ```
 ffffffff  - the main execute function
@@ -86,7 +99,7 @@ eeeeeeee  - sum function signature
 - `recursiveApply` calls `executeInternal` with `bbbbbbbbeeeeeeee0000000000000000000000000000000000000000000000000000000000000040`
 - `executeInternal` sees that the signature is 4 bytes and calls `executeNative`, forwarding all data
 - `executeNative` unpacks the `0xbbbbbbbb` signature and the program reaches the `curry` function.
-- `curry` stores the virtual, curried function signature `0xeeeeeeee` and the partially aplicated argument `0x0000000000000000000000000000000000000000000000000000000000000040` (`64`) at a memory pointer and writes that pointer into the `output_ptr`
+- `curry` stores the virtual, curried function signature `0xeeeeeeee` and the partially applied argument `0x0000000000000000000000000000000000000000000000000000000000000040` (`64`) at a memory pointer and writes that pointer into the `output_ptr`
 - the program returns to `recursiveApply`, which prepares the output as input for the next step
 
 **Step2**
@@ -362,4 +375,4 @@ Partially applied functions can be very important when used as a `map` or `reduc
 
 ## Next: Step 3
 
-In the next step we will show you how higher order functions can be used in this recursive engine.
+In the next step, we will show you how higher-order functions can be used in this recursive engine.
