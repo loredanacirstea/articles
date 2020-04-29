@@ -4,7 +4,8 @@ A collection of articles I have written, demos I built & presented.
 
 ## Articles
 
-- [From Stack Machine to Functional Machine: Step 1](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-1-fd2f12a372e2?source=friends_link&sk=90d8c8dbb355d1c1994c358d60590298)
+- [From Stack Machine to Functional Machine: Step 2 (currying)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-2-currying-f26c7f8b7220)
+- [From Stack Machine to Functional Machine: Step 1 (recursive apply)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-1-fd2f12a372e2?source=friends_link&sk=90d8c8dbb355d1c1994c358d60590298)
 - [A Future Thing: The Global App](https://medium.com/@loredana.cirstea/a-future-thing-the-global-app-56bce92bb2b7), also posted here: https://hackernoon.com/the-global-app-its-a-future-thing-p88n36w9
 - [The Ethereum Unicorn](https://medium.com/@loredana.cirstea/the-ethereum-unicorn-f7674b84dc69)
 - [Why ENS is not Obsolete](https://medium.com/@loredana.cirstea/why-ens-is-not-obsolete-a226d53a705c)

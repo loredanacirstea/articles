@@ -2,6 +2,8 @@
 
 ###### tags: `Taylor`, `Ethereum`, `Solidity`, `Yul`, `eWasm`, `WebAssembly`
 
+This is a gradual introduction to my talk at the [Solidity Summit](https://solidity-summit.ethereum.org), Wednesday, 29th of April at 2:50:00 PM CEST. [Agenda](https://docs.google.com/spreadsheets/d/1ylkaTYKx9TbAifCgyH2jN9SKJKrYfzab9zzTZgSL44g/edit#gid=0).
+
 [ToC]
 
 ## Environment
@@ -369,7 +371,7 @@ object "ContractB" {
 }
 ```
 
-Having a technique for currying functions is the second step in turning a stack machine into a functional machine.
+Having a technique for currying functions (at runtime) is the second step in turning a stack machine into a functional machine.
 
 Partially applied functions can be very important when used as a `map` or `reduce` argument, allowing you to write extensible code.
 
