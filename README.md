@@ -4,6 +4,7 @@ A collection of articles I have written, demos I built & presented.
 
 ## Articles
 
+- [From Stack Machine to Functional Machine: Step 3 (HOFs)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-3-higher-order-functions-18fb751066ec?sk=08bcb9b91686d527eef88da8dc989993)
 - [From Stack Machine to Functional Machine: Step 2 (currying)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-2-currying-f26c7f8b7220)
 - [From Stack Machine to Functional Machine: Step 1 (recursive apply)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-1-fd2f12a372e2?source=friends_link&sk=90d8c8dbb355d1c1994c358d60590298)
 - [A Future Thing: The Global App](https://medium.com/@loredana.cirstea/a-future-thing-the-global-app-56bce92bb2b7), also posted here: https://hackernoon.com/the-global-app-its-a-future-thing-p88n36w9

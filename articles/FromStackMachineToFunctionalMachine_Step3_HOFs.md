@@ -23,10 +23,10 @@ The full code source can also be found at https://gist.github.com/loredanacirste
 ### Prerequisites
 
 Read the previous articles:
-- [From Stack Machine to Functional Machine: Step 1 (recursive apply)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-1-fd2f12a372e2).
+- [From Stack Machine to Functional Machine: Step 1 - Recursive Apply](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-1-fd2f12a372e2).
 - [From Stack Machine to Functional Machine: Step 2 - Currying](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-2-currying-f26c7f8b7220).
 
-## Higher Order Functions (HOFs)
+## Higher-Order Functions (HOFs)
 
 HOFs are functions that handle other functions as input and/or output arguments. HOFs make functional programming possible.
 
@@ -35,7 +35,7 @@ We are building Taylor: a function/graph-based language, for dType - a decentral
 
 In order to create type definitions and casting functions, especially for various types of arrays, we needed HOFs such as `map`, `reduce`, `curry` (which transforms a function with multiple arguments into a curried function, at runtime).
 
-**In this article we are exploring how HOFs can be implemented in a stack-based language.** We will use Yul, but a similar approach can also be used for WebAssembly. We will build upon the code that we created in the previous steps, using recursive apply and currying.
+**In this article, we are exploring how HOFs can be implemented in a stack-based language.** We will use Yul, but a similar approach can also be used for WebAssembly. We will build upon the code that we created in the previous steps, using recursive apply and currying.
 
 ### Map & Curry
 
@@ -123,7 +123,7 @@ aaaaaaaa - second step: map signature
     - array values
 ```
 
-The first step, processed by the `recursiveApply` internal function, is currying our `sum` function, transforming it from `const sum = (a, b) => a + b` to `const sumCurried = a => b => a + b`. Internally, we are doing this by storing the `sum` function signature in memory, along with the first `a` argument - read about it in the **Step 2 (currying)** article.
+The first step, processed by the `recursiveApply` internal function is currying our `sum` function, transforming it from `const sum = (a, b) => a + b` to `const sumCurried = a => b => a + b`. Internally, we are doing this by storing the `sum` function signature in memory, along with the first `a` argument - read about it in the **Step 2 (currying)** article.
 
 In the second step, `map` receives our `sumCurried` signature (the memory pointer where the partially applied function data exists) and our array and applies the curried function over each array element.
 
@@ -160,7 +160,7 @@ const newarr = map(sumPartial, arr)
 
 ### Reduce
 
-The `reduce` function takes in a function of the form `(accumulator, currentValue) -> accumulator`, an array and an initial value for the accumulator.
+The `reduce` function takes in a function of the form `(accumulator, currentValue) -> accumulator`, an array, and an initial value for the accumulator.
 
 To simplify the pattern, we will only be using arrays of `uint256` type elements and the accumulator will also be of `uint256` type.
 
@@ -348,7 +348,7 @@ ee000003 - tuple of 3 elements follows
 
 To summarize: we have a graph with three steps (functions):
 - `selectraw` - we need this to select the `cast_to` type for an array element from the new array type. E.g. selecting `11000020` (`uint256`) from `22000008 44000003 11000020`, where `4400000311000020` means `uint256[3]`.
-- `curry` - curries the `cast` function & partially applies it on the `selectraw` result: `11000020` (`cast_to` type).
+- `curry` - curries the `cast` function & partially applies it to the `selectraw` result: `11000020` (`cast_to` type).
 - `map` - maps over the `cast_from` array elements and applies the partially applied `cast` function on each of them. Aggregates the results in an array.
 
 We have stored our graph. Now, we can execute it.
@@ -379,8 +379,11 @@ ee000002 - tuple of 2 elements following
 00000004
 ```
 
-If you call the Taylor contract with the above `calldata`, the result is `0xee000001000000684400000311000020000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000004`:
-
+If you call the Taylor contract with the above `calldata`, the result is:
+```
+0xee000001000000684400000311000020000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000004
+```
+Broken down, the result represents:
 ```
 ee000001 - all inputs & outputs are wrapped in a tupple
 00000068
