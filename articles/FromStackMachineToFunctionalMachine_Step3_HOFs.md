@@ -268,10 +268,34 @@ Our example from the first part of the article had some obvious limitations: we 
 
 But with Taylor, generic functions are possible and this opens the door towards generic HOFs, that do not need to be defined (and stored on-chain), separately, for each type. Generic HOFs are the glue for any functional system.
 
-- TODO: how they can interact with the Ropsten contract; link to tests & examples, especially where type sigs are explained
+### Taylor Array Casting Example
 
-- deployed on Ropsten: `0xe2420941086aE691dD73FAbdba2C194A382D30Ba`
-- https://ropsten.etherscan.io/tx/0x24fbe9c9cf7444656eef6f96b0d9664d9bf64c2f0804e3e747964a69beb45607
+To try out the following example, you can interact with the Taylor smart contract deployed on Ropsten, at `0x7D4150f492f93e2eDD7FC0Fc62c9193b322f75e5`:
+- create a new `.js` file in https://remix-alpha.ethereum.org
+- copy the following code:
+
+```
+const address = '0x7D4150f492f93e2eDD7FC0Fc62c9193b322f75e5'
+
+let provider = ethers.getDefaultProvider('ropsten');
+
+const newUint8 = '0xffffffff11000001';
+const newUint32Array3 = '0xffffffff44000000ee000002000000070000000f110000030000042200000411000004';
+const castArrayInt32ToUint256 = '0xffffffff77777788ee0000020000000c000000202200000844000003110000204400000312000004000000020000000500000004';
+
+
+const data = castArrayInt32ToUint256;
+
+const transaction = {
+    to: address,
+    data,
+}
+
+provider.call(transaction).then(console.log);
+
+// remix.exeCurrent()
+```
+- in the Remix console, execute `remix.exeCurrent()` or `remix.execute(filepath_to_your_js_file)`
 
 
 The following is an example of a graph, that can be interpreted by Taylor, which casts an array to another array of the same length, but different array element types. Graphs in Taylor are more complex than in our example from the first part of the article - each graph step (function) can receive as input any of the initial inputs or variables produced by previous steps.
@@ -287,7 +311,7 @@ Broken down, the `calldata` represents:
 ```
 fffffffe - store graph signature
 00000005 - length in bytes for the type definition head
-77777788 - sig
+77777788 - this graph's signature
 03       - steps count
 
 00000026 - length in bytes for hardcoded graph inputs
@@ -330,14 +354,14 @@ Given the array `[2, 5, 4]` or type `int32[3]`, we want to cast it to `uint256[3
 The `calldata` for doing this using our array casting graph is:
 
 ```
-0xffffffff77777777ee0000020000000c000000202200000844000003110000204400000312000004000000020000000500000004
+0xffffffff77777788ee0000020000000c000000202200000844000003110000204400000312000004000000020000000500000004
 ```
 
 Broken down, the `calldata` represents:
 
 ```
 ffffffff - execute function signature, the main entry point
-77777777 - our array casting graph signature
+77777788 - our array casting graph signature
 ee000002 - tuple of 2 elements following
 0000000c - additive sum of lengths in bytes for each tuple element
 00000020
