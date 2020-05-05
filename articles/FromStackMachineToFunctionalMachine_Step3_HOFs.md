@@ -300,6 +300,7 @@ provider.call(transaction).then(console.log);
 // remix.exeCurrent()
 ```
 - in the Remix console, execute `remix.exeCurrent()` or `remix.execute(filepath_to_your_js_file)`
+- check out a more detailed explanation of the typed encoding format here: https://github.com/loredanacirstea/taylor/blob/master/SupportedTypes.md
 
 
 The following is an example of a graph, that can be interpreted by Taylor, which casts an array to another array of the same length, but different array element types. Graphs in Taylor are more complex than in our example from the first part of the article - each graph step (function) can receive as input any of the initial inputs or variables produced by previous steps.
