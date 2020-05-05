@@ -8,9 +8,9 @@ tags: taylor
 
 [ToC]
 
-## Environment
+### Environment
 
-For illustrating our journey, we will use the [Yul language](https://solidity.readthedocs.io/en/v0.6.4/yul.html). Yul compiles to both EVM bytecode and eWasm (WebAssembly flavour), allowing you to create smart contracts for both Ethereum 1.0 and Ethereum 2.0.
+For illustrating our journey, we will use the [Yul language](https://solidity.readthedocs.io/en/v0.6.4/yul.html). Yul compiles to both WebAssembly and EVM bytecode.
 
 
 If you want to run the examples, it can be done with https://remix.ethereum.org:
@@ -20,7 +20,7 @@ If you want to run the examples, it can be done with https://remix.ethereum.org:
 The full code source can also be found at https://gist.github.com/loredanacirstea/fc1abd6345a17519455188d2e345f372
 
 
-## Prerequisites
+### Prerequisites
 
 Read the previous articles:
 - [From Stack Machine to Functional Machine: Step 1 (recursive apply)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-1-fd2f12a372e2).
@@ -28,13 +28,14 @@ Read the previous articles:
 
 ## Higher Order Functions (HOFs)
 
-HOFs are functions that handle other functions as input and/or output arguments. HOFs are the glue by which functional programming is made possible.
+HOFs are functions that handle other functions as input and/or output arguments. HOFs make functional programming possible.
 
-We are building Taylor: a function/graph-based language, for dType - a decentralized type system. You can find out more about dType and Taylor from our [Solidity Summit presentation](https://youtu.be/XMCgL99noYY). With Taylor, types are recursively applied functions, based on a suit of "native" functions, implemented in a stack-based language, like Yul or WebAssembly.
+
+We are building Taylor: a function/graph-based language, for dType - a decentralized type system. You can find out more about dType and Taylor from our [Solidity Summit presentation](https://youtu.be/XMCgL99noYY). **With Taylor, types are recursively applied functions, based on a suit of "native" functions, implemented in a stack-based language, like Yul or WebAssembly.**
 
 In order to create type definitions and casting functions, especially for various types of arrays, we needed HOFs such as `map`, `reduce`, `curry` (which transforms a function with multiple arguments into a curried function, at runtime).
 
-In this article we are exploring how HOFs can be implemented in a stack-based language. We will use Yul, but a similar approach can also be used for WebAssembly. We will build upon the code that we created in the previous steps, using recursive apply and currying.
+**In this article we are exploring how HOFs can be implemented in a stack-based language.** We will use Yul, but a similar approach can also be used for WebAssembly. We will build upon the code that we created in the previous steps, using recursive apply and currying.
 
 ### Map & Curry
 
@@ -90,7 +91,7 @@ case 0xaaaaaaaa {
 }
 ```
 
-To simplify the pattern, we only expect arrays with `uint256` type elements.
+To simplify the pattern, we only expect arrays with `uint256` type elements. You will see how Taylor solves HOFs for any type in the second part of the article, but in the current case, using `uint256` makes the code simpler and easier to understand.
 
 You can look at the full source code at the bottom of the article, to understand how it works.
 
@@ -260,13 +261,16 @@ If you call the contract with the above `calldata`, the result is `31`:
 We use the `map`, `curry` and `reduce` functions in our Taylor on-chain graph interpreter smart contract, used for defining types. These functions are especially useful for defining array types and building casting functions, which iterate over array elements and cast them to a new type.
 
 
-Taylor uses a special, typed encoding and decoding format, where values are always preceded by their type. This allows Taylor to do some interesting things:
-- have runtime type checking
-- build generic functions, that can handle multiple types at runtime (Taylor only works with memory pointers)
+**Taylor uses a special, typed encoding and decoding format, where values are always preceded by their type. This allows Taylor to do some interesting things:**
+- **have runtime type checking**
+- **build generic functions, that can handle multiple types at runtime (Taylor only works with memory pointers)**
 
 Our example from the first part of the article had some obvious limitations: we were using only `uint256` type values in the arrays and accumulator. Even if we use a general ABI encoding (e.g. Ethereum ABI encoding), it would be hard to impossible to create a generic `map` or `reduce` function that would work on any type (especially with varying type sizes - e.g. `uint8`).
 
-But with Taylor, generic functions are possible and this opens the door towards generic HOFs, that do not need to be defined (and stored on-chain), separately, for each type. Generic HOFs are the glue for any functional system.
+But with Taylor, generic functions are possible and this opens the door towards **generic HOFs**, that do not need to be defined (and stored on-chain), separately, for each type.
+
+Generic HOFs are the distinct feature of functional systems, that give them their intrinsic power.
+
 
 ### Taylor Array Casting Example
 
