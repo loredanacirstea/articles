@@ -4,6 +4,7 @@ A collection of articles I have written, demos I built & presented.
 
 ## Articles
 
+- [Golden Gate — Trustless-Bridging Ethereum (EVM) Blockchains — Part 1: Basics](https://loredanacirstea.medium.com/golden-gate-trustless-bridging-ethereum-evm-blockchains-part-1-basics-d016300ea0dd)
 - [From Stack Machine to Functional Machine: Step 3 (HOFs)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-3-higher-order-functions-18fb751066ec?sk=08bcb9b91686d527eef88da8dc989993)
 - [From Stack Machine to Functional Machine: Step 2 (currying)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-2-currying-f26c7f8b7220)
 - [From Stack Machine to Functional Machine: Step 1 (recursive apply)](https://medium.com/@loredana.cirstea/from-stack-machine-to-functional-machine-step-1-fd2f12a372e2?source=friends_link&sk=90d8c8dbb355d1c1994c358d60590298)

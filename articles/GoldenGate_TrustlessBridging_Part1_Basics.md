@@ -5,15 +5,15 @@ tags: bridging
 # Golden Gate - Trustless-Bridging Ethereum (EVM) Blockchains - Part 1: Basics
 
 
-With the emerging proposals for integrating the EVM in Ethereum 2.0 (https://ethresear.ch/t/executable-beacon-chain/8271), this EVM to EVM trustless two directional bridge series comes at the just the right moment. It can bridge Ethereum 1 to Ethereum 2. And the other way around.
+With the emerging proposals for integrating the EVM in Ethereum 2.0 (https://ethresear.ch/t/executable-beacon-chain/8271), this EVM to EVM trustless two-directional bridge series comes at just the right moment. It can bridge Ethereum 1 to Ethereum 2. And the other way around.
 
 ## A Symmetrical Light Client
 
 A [Light Client](https://ethereum.org/en/developers/docs/nodes-and-clients/#light-node) is a tool for validating chain data while storing the minimum amount of information.
 
-The purpose of an on-chain light client is simple: storing the block hashes. These are enough to prove that "something" has happened on a chain of interest. We can prove transactions, receipts, balances, contract code and even storage slots.
+The purpose of an on-chain light client is simple: storing the block hashes. These are enough to prove that "something" has happened on a chain of interest. We can prove transactions, receipts, balances, contract code, and even storage slots.
 
-We will show in later articles a demonstration of a minimal, yet effective two directional (symmetrical) client and a proposal of decentralized bridge economics.
+We will show in later articles a demonstration of a minimal (yet effective), two-directional (symmetrical) client and a proposal of decentralized bridge economics.
 
 ## A Symmetrical Prover
 
@@ -23,9 +23,9 @@ This process is symmetric for proving chain A data on chain B.
 
 The core mechanism is:
 * **get the Merkle proof data from a chain B full node (archive node if a storage proof is needed)**
-* **send the proof data as calldata to the Prover contract on chain A, along with the header corresponding to the chain B block containing the state change we want to verify**
-* **the Prover contract computes the block hash from the header data and checks whether it is a valid hash, by querying the light client smart contract on chain A, which keeps track of chain B block hashes**
-* **proof data is verified against the bytes32 Patricia-Merkle trie root found in the block header data**
+* **send the proof data as `calldata` to the Prover contract on chain A, along with the header corresponding to the chain B block containing the state change we want to verify**
+* **the Prover contract computes the block hash from the header data and checks whether it is a valid hash, by querying the Light Client smart contract on chain A, which keeps track of chain B block hashes**
+* **proof data is verified against the bytes32 Patricia-Merkle trie root found in the block header**
 
 For an in-depth understanding of how the Patricia-Merkle trie works, check out [the official docs](https://eth.wiki/en/fundamentals/patricia-tree), and [this awesome article](https://easythereentropy.wordpress.com/2014/06/04/understanding-the-ethereum-trie/).
 
@@ -36,7 +36,7 @@ Compute proofs in JavaScript with https://github.com/zmitton/eth-proof or direct
 **The bridge specification is worked on at https://github.com/loredanacirstea/blockchain-bridging-api. PRs, suggestions, issues are welcome.**
 
 
-Now lets see exactly what the header data contains:
+Now let's see exactly what the header data contains:
 
 ```solidity
 struct BlockHeader {
@@ -89,7 +89,7 @@ function verifyHeader(
 *https://github.com/loredanacirstea/goldengate/blob/495abc40596e7b4cad519131d16874fbc844bd79/contracts/contracts/Prover.sol#L24-L37*
 
 
-Next, the same algorithm will be used for checking Merkle proof data agains the trie root. **Check out *https://github.com/loredanacirstea/goldengate/blob/495abc40596e7b4cad519131d16874fbc844bd79/contracts/contracts/lib/MPT.sol.***
+Next, the same algorithm will be used for checking Merkle proof data against the trie root. **Check out *https://github.com/loredanacirstea/goldengate/blob/495abc40596e7b4cad519131d16874fbc844bd79/contracts/contracts/lib/MPT.sol.***
 
 If we want to prove that a transaction receipt is part of the chain, our proof must contain the entire path of Merkle tree nodes from our transaction to the root node.
 
@@ -129,7 +129,7 @@ A simple proof example:
 }
 ```
 
-The path from the root node of the receipts tree to the receipt of interest is given by the receipt index. In the above case, the index is 0, so the verification algorithm with take the first of the 17 values of the branch node as the new expected root value and check it agains the last odd-length leaf node with a key of `0x30` and a value representing the RLP-encoded receipt data. For other examples, [check this out](https://github.com/loredanacirstea/statebridge/blob/495abc40596e7b4cad519131d16874fbc844bd79/contracts/test/data.js).
+The path from the root node of the receipts tree to the receipt of interest is given by the receipt index. In the above case, the index is 0, so the verification algorithm with take the first of the 17 values of the branch node as the new expected root value and check it against the last odd-length leaf node with a key of `0x30` and a value representing the RLP-encoded receipt data. For other examples, [check this out](https://github.com/loredanacirstea/statebridge/blob/495abc40596e7b4cad519131d16874fbc844bd79/contracts/test/data.js).
 
 The RLP-encoded receipt data has this form:
 ```solidity
@@ -149,9 +149,7 @@ struct Log {
 
 The same type of proof is used to prove that a transaction is included in a block - the Patricia tree path is the transaction index inside the block. Or that an account is part of the state trie - the path is `keccak256(abi.encode(account_address))`. And if we want to prove a storage slot is part of the storage trie (inside the account trie), the path is the storage key.
 
-
 ### Proving logs happened
-
 
 What are the steps for proving a log happened on another chain?
 * **get the receipt proof for the receipt containing the log and the header for the block in which it was mined.**
@@ -233,8 +231,8 @@ ProverChainB -> TokenChainB: mintTokens()
 TokenChainB -> TokenChainB: TokenMinted event
 ```
 
-This is a simplified flow - in reality, we need to also take some precautions against reusing of the same proof data multiple times.
-One solution for the log-based prover, is using **idempotent execution** (e.g. a log can contain values for the final state instead of the state delta, therefore submitting it multiple times results in the exact same final state), along with **limiting the time period in which the proof can be submitted**, to avoid reusing old logs, or a **monotonically increasing value** that makes the proof submissions unique. Or a combination of these kinds of techniques.
+This is a simplified flow - in reality, we need to also take some precautions against reusing the same proof data multiple times.
+One solution for the log-based prover is using **idempotent execution** (e.g. a log can contain values for the final state instead of the state delta, therefore submitting it multiple times results in the exact same final state), along with **limiting the time period in which the proof can be submitted**, to avoid reusing old logs, or a **monotonically increasing value** that makes the proof submissions unique. Or a combination of these kinds of techniques.
 
 
 ### Proving transaction existence and outcome
@@ -285,7 +283,7 @@ After we prove that the transaction data is indeed part of the transaction trie,
 * **RLP decode receipt data and check the value of `receipt.status`**
 
 
-We might need to prove that the transaction was sent from a certain address. We can do this with `ecverify`, by determining the address from the `r`, `s`, `v` signature values in the transactiond data and the hash data - the message that was signed.
+We might need to prove that the transaction was sent from a certain address. We can do this with `ecverify`, by determining the address from the `r`, `s`, `v` signature values in the transaction data and the hash data - the message that was signed.
 
 ### Proving state after a block is processed
 
@@ -305,7 +303,7 @@ struct Account {
 
 This allows proving how many transactions did an EOA (externally owned account) perform or how many contract creations a contract account performed (`nonce`). It allows for proving a balance that an account had after a certain block was mined. Or that a contract had a certain code deployed at a certain block.
 
-The `storageRoot` enables us to prove even more - that a contracts's storage slot contained value `x` at block `y`.
+The `storageRoot` enables us to prove even more - that a contract's storage slot contained value `x` at block `y`.
 
 What are the steps for proving on `chain A` that a contract from chain `B` had a storage value of `x` at block `y`?
 * **get the account proof and the header for the block of interest.**
@@ -327,7 +325,7 @@ function verifyAccount(
 }
 ```
 * **decode the RLP-encoded account data and extract the `storageRoot`**
-* **check the storage proof agains the `storageRoot`**
+* **check the storage proof against the `storageRoot`**
 ```solidity
 function verifyStorage(
     MPT.MerkleProof memory accountProof,
@@ -346,7 +344,7 @@ function verifyStorage(
 ```
 * **the storage proof will contain the storage key and value on the last leaf node.**
 
-You can find an example of such a proof [here](https://github.com/loredanacirstea/statebridge/blob/495abc40596e7b4cad519131d16874fbc844bd79/contracts/test/data.js#L269-L315).
+You can find an example of such proof [here](https://github.com/loredanacirstea/statebridge/blob/495abc40596e7b4cad519131d16874fbc844bd79/contracts/test/data.js#L269-L315).
 
 
 ### Basics done. Now what?
