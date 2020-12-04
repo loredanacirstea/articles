@@ -34,12 +34,14 @@ struct Transaction {
 3) same account nonce (number of transactions sent for EOAs / number of contracts created for contracts), checked by miners
 4) with [EIP-155](https://eips.ethereum.org/EIPS/eip-155), same chain id, which is included in the signed transaction data
 
-Therefore, to create a protocol that allows replaying transactions for the purpose of having correctly synced state between chains, we need a Proxy contract that fulfills the role of the miner: validates the transaction and runs it.
+Therefore, to create a protocol that allows replaying transactions for the purpose of having a correctly synced state between chains, we need a Proxy contract that fulfills the role of the miner: validates the transaction and runs it.
 
 The above rules, allow us to reuse the exact same `calldata` on all chains where we want to have synced state changes. The Proxy contract will keep track of the account nonce per each chain ID that it supports and will forward the call to the appropriate contract address (`to` field), with some caveats for this receiving contract:
 - it will need to know how to interface with the Proxy
 - `msg.sender` will now be the Proxy address, so the original `msg.sender` must be additionally provided by the Proxy
 - the Proxy will be given administrative rights to change state and it will be the only mechanism through which state is changed
+
+![golden_gate_txreplay.png](./assets/golden_gate_txreplay.png)
 
 ```
 participant relayer
@@ -117,7 +119,7 @@ TransactionReceipt memory receipt = toReceipt(
     receiptdata.expectedValue
 );
 ```
-* **recover the sender address and account nonce from the signed transaction data and verify that the nonce is what we expect**. We are effectively synchronizing the account nonce from chain A, with chain B in order to protect from replaying the same transaction multiple times. This `nonce` can be kept per each account, per each chain we are synchronizing with. It is updated regardless of success/fail status of the transaction.
+* **recover the sender address and account nonce from the signed transaction data and verify that the nonce is what we expect**. We are effectively synchronizing the account nonce from chain A, with chain B in order to protect from replaying the same transaction multiple times. This `nonce` can be kept per each account, per each chain we are synchronizing with. It is updated regardless of the success/fail status of the transaction.
 ```solidity
 address sender = getTransactionSender(txdata, chainId);
 
