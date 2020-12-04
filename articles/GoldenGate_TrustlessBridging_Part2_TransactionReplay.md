@@ -45,14 +45,14 @@ The above rules, allow us to reuse the exact same `calldata` on all chains where
 participant relayer
 participant user
 
-relayer -> ChainA: subscribe('newBlockHeaders')
-user -> ChainA: CounterA.incrementCount()
+relayer --> ChainA: subscribe('newBlockHeaders')
+user --> ChainA: CounterA.incrementCount()
 Note over ChainA: transaction mined
-ChainA -> relayer: new block header
-relayer -> LightClientB: addBlock()
-user -> ChainA: get proof data
-ChainA -> user: header, tx proof, receipt proof
-user -> ProverChainB: header, tx proof, receipt proof
+ChainA --> relayer: new block header
+relayer --> LightClientB: addBlock()
+user --> ChainA: get proof data
+ChainA --> user: header, tx proof, receipt proof
+user --> ProverChainB: header, tx proof, receipt proof
 ProverChainB -> ProverChainB: verifyHeader()
 ProverChainB -> LightClientB: getConfirmedBlockHash()
 LightClientB -> ProverChainB: hashIsValid (bool)
@@ -67,7 +67,7 @@ ProverChainB -> ChainB: CounterB.incrementCount()
 
 What are the steps for replaying a transaction on another chain?
 * **get the transaction and receipt proofs, along with the header of the block in which the transaction was mined.**
-* **send the proofs to the Proxy-Prover smart contract**. You can see the entire logic of the `forwardAndVerify` function [here](https://github.com/loredanacirstea/goldengate/blob/master/contracts/contracts/ProverStateSync.sol#L11-L55).
+* **send the proofs to the Proxy-Prover smart contract**. You can see the entire logic of the `forwardAndVerify` function [here](https://github.com/loredanacirstea/goldengate/blob/master/contracts/contracts/ProverStateSync.sol).
 ```solidity
 function forwardAndVerify(
     EthereumDecoder.BlockHeader memory header,
