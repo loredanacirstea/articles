@@ -375,7 +375,7 @@ If we are to hold Ethereum at its highest self (the one presented by Vitalik and
 
 ## Final Words
 
-The Ethereum, as a community, looses fairness legitimacy when members abuse each other's legitimacy. It also looses fairness and performance legitimacy when it accepts with impunity and even promotes ICO companies who do not fulfill their promises.
+The Ethereum, as a community, loses fairness legitimacy when members abuse each other's legitimacy. It also loses fairness and performance legitimacy when it accepts with impunity and even promotes ICO companies that do not fulfill their promises.
 
 At the end of such a long-winded and dramatic piece, I can only wish that each of us in Ethereum respects the legitimacy of others and nurture our own. And only by doing so: you Ethereum community member, I expect nothing from you other than what you yourself expect from your highest self.
 
@@ -394,9 +394,7 @@ https://youtu.be/7a1K3CuE3Ns
 
 https://forms.gle/AUsZobjgHLcDxNak6
 
-Answer in the poll if you want to help create an Ethereum weekly with open-source, volunteer-lead projects and projects who want to collaborate with other projects.
+Answer in the poll if you want to help create an Ethereum weekly with open-source, volunteer-led projects and projects who want to collaborate with other projects.
 
-I am thinking of a video weekly of very short format, where in 5 minutes you can learn about 10 projects.
-
-
+I am thinking of a video weekly of a very short format, wherein 5 minutes you can learn about 10 projects.
 
