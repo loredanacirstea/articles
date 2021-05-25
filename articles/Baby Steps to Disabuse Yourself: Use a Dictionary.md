@@ -31,7 +31,7 @@ There is a high discomfort in being shunned by those you maybe even care about, 
 
 We need correct data in order to construct correct models of the world. It should be a human right to receive correct data (as much as it can be demonstrated).
 
-We need science as a shortcut for being in consensus with the laws of the universe and we need a dictionary in order to be in consensus with the vocabulary of others. Voting is yet another consensus consulting mechanism.
+We need Science as a shortcut for being in consensus with the laws of the Universe and we need a dictionary in order to be in consensus with the vocabulary of others. Voting is yet another consensus consulting mechanism.
 
 But after achieving consensus internally, we need to steadfastly defend it at all costs and with maximum clarity, until we are proven wrong. At which point, we will disabuse ourselves of the illusion of the old consensus and adopt the new one.
 
