@@ -4,6 +4,8 @@ tags: taylor
 
 # Taylor - A Performant Language for the Ethereum Virtual Machine (EVM)
 
+![Taylor-EVM](https://raw.githubusercontent.com/loredanacirstea/articles/master/articles/assets/taylor-eth-medium.png)
+
 
 Taylor has started as an interpreted functional language for the EVM, being born out of our [Pipeline](https://github.com/pipeos-one/pipeline) project. Pipeline is a textual and visual language for flow-based programming, where function inputs and outputs can be connected to create complex atomic operations. These atomic operations are interpreted by our Pipeline graph interpreter smart contract or the graphs can be deployed as standalone, smart contracts, optimized for smaller transaction gas costs.
 
@@ -292,11 +294,10 @@ However, amongst the 3 flavors of Taylor, the compiled one (that we demoed today
 
 ## Video Demo
 
+https://youtu.be/vpLpFxRJKDE
 
 This technology was created by and for volunteers at The Laurel Project. You may join this tech effort.
 
-
-https://youtu.be/vpLpFxRJKDE
 
 
 
