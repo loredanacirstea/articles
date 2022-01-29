@@ -111,6 +111,12 @@ Its input data: `0x000000ff**xxxxxx..xx`
 
 Total: 17 functions
 
+### Cache
+
+If instead of the normal contract at `0xff`, we design a contract with cache at `0x01ff`:
+input data:  `0x000001ff**xxxxxx..xx`, then the input may be hashed with keccak and a stored value presented as output in case of a match.
+In case of no match: the computation is performed normally and the output is stored at the address keccak256(input) before being returned. (As any other memoization solution)
+
 ### Gas Cost
 
 Since nodes should have the freedom to keep only partial state, the digging into the deep past should be more costly. We propose the grading by height:
@@ -119,6 +125,8 @@ Since nodes should have the freedom to keep only partial state, the digging into
 2. Blocks from h-255 to h-6500 (about 1 day)
 3. Blocks from h-6500 to h-2400000 (about 1 year)
 4. Blocks from h-2400000 to 0 (all the rest)
+
+In the case of the cache: the differentiation does not apply when a match is found.
 
 To this differentiated cost we add the cost of the external contract call, the computing cost of interfacing with the LevelDB persistence. TBD.
 
