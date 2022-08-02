@@ -69,7 +69,7 @@ And we modified the ERC20 standard to become multi-chain. We call it Inter-Chain
 
 You can have the same smart contract (e.g. ERC20, NFT, other standard) represented uniquely across Cosmos chains (with or without execution engine). Without any fragmentation. If the chain has an execution engine, the flexibility of what types of standards can become cross-chain without further protocol changes, becomes maximum.
 
-This solves fragmentation across any Cosmos chains and allows protocols to fully control their tokens on all chains.
+**This solves fragmentation across any Cosmos chains and allows protocols to fully control their tokens on all chains.**
 
 To further solve for non-Cosmos chains, like in the case of Ethereum and Nomad, I propose the following:
 
@@ -78,7 +78,7 @@ To further solve for non-Cosmos chains, like in the case of Ethereum and Nomad, 
 
 Cosmos itself is proposing a shared security model across chains. And I am proposing the same across bridges.
 
-For the sake of protecting our users for getting rekt or panic selling, or getting panic-scammed, I urge bridges to think about a shared security model with shared responsibility.
+**For the sake of protecting our users for getting rekt or panic selling, or getting panic-scammed, I urge bridges to think about a shared security model with shared responsibility.**
 
 ![](https://raw.githubusercontent.com/loredanacirstea/articles/master/articles/assets/bridge_guild_wrapper.png)
 
@@ -100,6 +100,6 @@ Shared-security can also mean shared risk when things go wrong. To limit the ris
 
 
 
-The future is inter-chain, with shared responsiblity, with collaboration and constructive criticism rather than monopolies. Users should no longer fear getting rekt.
+**The future is inter-chain, with shared responsiblity, with collaboration and constructive criticism rather than monopolies. Users should no longer fear getting rekt.**
 
 
