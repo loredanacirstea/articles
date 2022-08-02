@@ -84,7 +84,9 @@ Cosmos itself is proposing a shared security model across chains. And I am propo
 
 I propose a **Bridge Guild** where:
 - a `BridgeGuildWrapper` smart contract converts bridge-specific wrapped assets (e.g. `madWETH`, `multiWETH`, `ceWETH` ...) to a unique instance, inter-chain compatible (e.g. `IC_WETH`).
-- each bridge that joins must pass a 3rd party audit and cross-audits from other bridge teams
+- each bridge that joins must pass a 3rd party audit and cross-audits from other bridge teams. Only in a guild do you have the right incentive to do such an audit with care. And who better to review your code if not other bridge specialists?
+- bridges declare how much they are open to guarantee like any financial institution does to pass as a financial institution; a well-thought slashing mechanism
+- or, a way to pay back the other bridges in time, with additional interest if your bridge gets hacked
 
 Then, as a user, instead of holding `madWETH`, you can swap for `IC_WETH` on a 1:1 ratio and you `IC_WETH` is backed by the entire **Bridge Guild**'s liquidity.
 
