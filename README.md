@@ -24,6 +24,7 @@ A collection of articles I have written, demos I built & presented.
 
 ## Conferences, presentations
 
+- [HackAtom Seoul 2022](https://youtu.be/j5CVliOb-Ck)
 - [EthCC Paris 2019 - Pipeline](https://www.youtube.com/watch?v=2NqQh_GHAh0)
 - [Ethereum Meetup Berlin 2018 - Pipeline](https://youtu.be/MBUdk6qPBLQ)
 - [Ethereum Meetup Berlin 2018 - Drone Demo with µRaiden - Unidirectional Off-Chain Micropayments](https://www.youtube.com/watch?v=E6CIgJPxgpQ)
